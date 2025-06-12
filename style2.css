@@ -1,0 +1,98 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background: linear-gradient(to right, #CDC1FF, #8f44da);
+    color: #1c1248;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.container {
+    margin-top: 100px;
+    width: 750px;
+    background-color: whitesmoke;
+    border-radius: 10px;
+    padding: 30px;
+}
+
+
+.container .content-box {
+    padding: 13px 20px 0;
+    border-radius: 10px;
+    border: 1.5px solid rgb(191, 189, 189);
+}
+
+.text::-webkit-scrollbar {
+    width: 0;
+}
+
+.content-box .text {
+    max-height: 250px;
+    overflow-y: auto;
+}
+
+.text {
+    font-size: 21px;
+    text-align: justify;
+    letter-spacing: 1px;
+    word-break: break-all;
+}
+
+#write-input {
+    opacity: 0;
+    position: absolute;
+    /* pointer-events: none; Optional: Prevents mouse clicks if needed */
+}
+
+.content-box .content {
+    display: flex;
+    justify-content: space-between;
+}
+
+.result {
+    list-style: none;
+    display: flex;
+    width: calc(100% - 140px);
+    justify-content: space-evenly;
+    padding-top: 30px;
+    padding-bottom: 10px;
+}
+
+.result li {
+    display: flex;
+    justify-content: space-between;
+}
+
+.result li p {
+    font-size: 19px;
+}
+
+.result li span {
+    /* display: block; */
+    font-size: 20px;
+    margin-left: 10px;
+    font-weight: 550;
+}
+
+button {
+    margin-top: 20px;
+    padding: 9px;
+    margin-bottom: 10px;
+    margin-right: 10px;
+    font-size: 15px;
+    background-color: #b382e3;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #a566e3;
+    padding: 9.5px;
+}
