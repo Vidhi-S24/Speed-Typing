@@ -11,13 +11,16 @@ const paragraph = [
     "Reading lets you travel without ever leaving your chair. Books take you to distant worlds, introduce new ideas, and help you understand different perspectives. Fiction sparks your imagination, while nonfiction teaches facts and deepens your knowledge. Regular reading builds vocabulary, improves focus, and strengthens your thinking and writing. Even your typing can benefit from reading, as your exposure to words increases. If reading feels challenging, start small—just ten minutes a day is enough. Choose books or topics that truly interest you. Use audiobooks or reading apps if that helps. The key is to make reading a habit. Read before bed, during a break, or while commuting. Over time, you’ll see personal growth without even trying. Books aren’t just for entertainment—they’re tools for learning, empathy, and self-discovery. Open one, and open a world of possibilities."
 ];
 
-
 let timer,
     maxtime = 120,
     timeleft = maxtime;
 TimeTag = document.querySelector(".time span b")
-function RandomParagraphGenerator() {
 
+let correctchar=0;
+cpmTag=document.querySelector(".cpm span")
+
+function RandomParagraphGenerator() {
+    
     let mistakes = 0;
 
     window.addEventListener("DOMContentLoaded", function () {
@@ -45,7 +48,6 @@ function RandomParagraphGenerator() {
     inputField.addEventListener("input", function () {
         const typedValue = this.value;
 
-
         for (let i = 0; i < spans.length; i++) {
             const typedChar = typedValue[i];
             const span = spans[i];
@@ -54,10 +56,14 @@ function RandomParagraphGenerator() {
                 span.style.color = "black";
                 span.setAttribute("data-error", "false");
             }
-            else if (typedChar === originalParagraph[i]) {
-                span.style.color = "#5D8736";
-                span.setAttribute("data-error", "false");
-            }
+           else if (typedChar === originalParagraph[i]) {
+    if (span.getAttribute("data-error") === "false" && span.style.color !== "#5D8736") {
+        correctchar++;
+    }
+    span.style.color = "#5D8736";
+    span.setAttribute("data-error", "false");
+}
+
             else {
                 if (span.getAttribute("data-error") === "false") {
                     mistakes++;
@@ -75,7 +81,6 @@ function RandomParagraphGenerator() {
     });
 
     timer = setInterval(initTimer, 1000);
-
 }
 
 RandomParagraphGenerator();
@@ -84,6 +89,11 @@ function initTimer() {
     if (timeleft > 0) {
         timeleft--;
         TimeTag.innerText = timeleft;
+        
+        const elapsedTime = maxtime - timeleft;
+        const minutes = elapsedTime / 60;
+        const cpmValue = Math.round(correctchar / minutes || 0);
+        cpmTag.innerText = cpmValue;
     }
     else {
         clearInterval(timer)
@@ -91,7 +101,6 @@ function initTimer() {
     }
 }
 
-document.getElementById('tryagain').addEventListener('click', function() {
+document.getElementById('tryagain').addEventListener('click', function () {
     location.reload();
 });
-
